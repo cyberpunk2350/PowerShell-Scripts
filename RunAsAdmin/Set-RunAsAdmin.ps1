@@ -1,5 +1,46 @@
-<#
 
+<#PSScriptInfo
+
+.VERSION 1.0
+
+.GUID d51fbc01-155c-450f-9c4f-30470fcdb15d
+
+.AUTHOR Henry Rice
+
+.COMPANYNAME 
+
+.COPYRIGHT 
+
+.TAGS 
+
+.LICENSEURI 
+
+.PROJECTURI 
+
+.ICONURI 
+
+.EXTERNALMODULEDEPENDENCIES 
+
+.REQUIREDSCRIPTS 
+
+.EXTERNALSCRIPTDEPENDENCIES 
+
+.RELEASENOTES
+
+
+.PRIVATEDATA 
+
+#>
+
+<# 
+
+.DESCRIPTION 
+ Checks the status of the current administrative enviroment; if it Run-As-Admin is disabled in the registary then it will attempt to enable it with either a reg file or with through the appropriate powershell commands 
+
+#> 
+
+<#
+Notes on changeing the settings:
 Get-ItemProperty -path hklm:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorUser
 
 Set-ItemProperty -path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -Name ConsentPromptBehaviorUser -Value 1
