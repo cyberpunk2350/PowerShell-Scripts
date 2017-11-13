@@ -1,38 +1,33 @@
-.SYNOPSIS
-This is a quick hack replacement for NSLOOKUP to check mutiple DNS Servers at one time.
+SYNOPSIS </br>
+This is a quick hack replacement for NSLOOKUP to check mutiple DNS Servers at one time.</br>
 
-.DESCRIPTION 
-  Quick DNS pull from your choice of DNS Servers
-  Defaults to Google and Open DNS 
+.DESCRIPTION </br>
+  Quick DNS pull from your choice of DNS Servers</br>
+  Defaults to Google and Open DNS </br>
 
 
-.PARAMETER Name
-   The site or address you are looking up
-   Can also use "CN","ComputerName", and "URL"
+.PARAMETER Name</br>
+   The site or address you are looking up</br>
+   Can also use "CN","ComputerName", and "URL"</br>
 
-.PARAMETER Server
-   The DNS server(s) you want to query 
+.PARAMETER Server</br>
+   The DNS server(s) you want to query </br>
 
-.INPUTS
-  None
-
-.OUTPUTS
-  None
-
-.NOTES
-  Version:        1.0
-  Author:         Henry Rice
-  Creation Date:  01 Nov 2017
-  Purpose/Change: Initial script development
+.NOTES</br>
+  Version:        1.0</br>
+  Author:         Henry Rice</br>
+  Creation Date:  01 Nov 2017</br>
+  Purpose/Change: Initial script development</br>
   
-.EXAMPLE
-  WhoIs -Name Google.com -Server 8.8.8.8
-  Using both the Name and Server Parameters
+.EXAMPLE</br>
+  WhoIs -Name Google.com -Server 8.8.8.8</br>
+  Using both the Name and Server Parameters</br>
 
-.EXAMPLE  
-  WhoIs -Name Google.com
-  Using Just the Name Parameter
+.EXAMPLE  </br>
+  WhoIs -Name Google.com</br>
+  Using Just the Name Parameter</br>
 
-.EXAMPLE
-  WhoIs google.com
-  Using Just the Name Parameter, however flag is not required to be included
+.EXAMPLE</br>
+  WhoIs google.com</br>
+  Using Just the Name Parameter, however flag is not required to be included</br>
+</br>
