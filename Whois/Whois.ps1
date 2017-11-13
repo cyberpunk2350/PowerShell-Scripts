@@ -34,17 +34,20 @@
 
 <# 
 
+.SYNOPSIS 
+  This is a quick hack replacement for NSLOOKUP to check mutiple DNS Servers at one time.
+
 .DESCRIPTION 
- Quick DNS pull from your choice of DNS Servers
- Defaults to Google and Open DNS 
+  Quick DNS pull from your choice of DNS Servers
+  Defaults to Google and Open DNS 
 
 
 .PARAMETER Name
-    The site or address you are looking up
-    Can also use "CN","ComputerName", and "URL"
+  The site or address you are looking up
+  Can also use "CN","ComputerName", and "URL"
 
 .PARAMETER Server
-    The DNS server(s) you want to query 
+  The DNS server(s) you want to query 
 
 .INPUTS
   None
