@@ -1,3 +1,4 @@
+#checks for an existing PSProfile if it does exist, it opends it; if not it creates one
 function pro {
   if (test-path $PROFILE.CurrentUserCurrentHost){ 
     start notepad.exe $profile.CurrentUserCurrentHost 
