@@ -15,8 +15,8 @@ $jpgfile = Get-OpenFile
 # Pushes the selcted file to the account of the curent user
 $dom = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 $root = $dom.GetDirectoryEntry()
-$search = [System.DirectoryServices.DirectorySearcher]
-$root$search.Filter = "(&(objectclass=user)(objectcategory=person)(samAccountName=$username))"
+$search = [System.DirectoryServices.DirectorySearcher]$root
+$search.Filter = "(&(objectclass=user)(objectcategory=person)(samAccountName=$username))"
 $result = $search.FindOne()
 if ($result -ne $null)
 {
