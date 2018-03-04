@@ -17,10 +17,10 @@
   Author:         Henry Rice</br>
   Creation Date:  01 Nov 2017</br>
   Purpose/Change: </br>
-				  v1.0:		Initial script development</br>
-				  v1.0.1:	Changed function Name to match std convention; </br>
-							Replaced Write-Host with Write-Output</br>
-							Added more default Servers: quad9.net, OpenDNS, Level3.net, Symantec, DNSbyComodo.com</br>
+                  v1.0:     Initial script development</br>
+                  v1.0.1:   Changed function Name to match std convention; </br>
+                            Replaced Write-Host with Write-Output</br>
+                            Added more default Servers: quad9.net, OpenDNS, Level3.net, Symantec, DNSbyComodo.com</br>
 							</br>
 .EXAMPLE</br>
   Get-DNS -Name Google.com -Server 8.8.8.8</br>
