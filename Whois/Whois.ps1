@@ -54,10 +54,10 @@ Function Get-DNS {
 	  Author:         Henry Rice
 	  Creation Date:  01 Nov 2017
 	  Purpose/Change: 
-					  v1.0:		Initial script development
-					  v1.0.1:	Changed function Name to match standard convention
-								Replaced Write-Host with Write-Output
-								Added more default Servers: quad9.net, OpenDNS, Level3.net, Symantec, DNSbyComodo.com, ihgip.net
+			  v1.0:   Initial script development
+			  v1.0.1: Changed function Name to match standard convention
+				  Replaced Write-Host with Write-Output
+				  Added more default Servers: quad9.net, OpenDNS, Level3.net, Symantec, DNSbyComodo.com, ihgip.net
 	  
 	.EXAMPLE
 	  Get-DNS -Name Google.com -Server 8.8.8.8
