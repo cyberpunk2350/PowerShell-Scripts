@@ -3,21 +3,37 @@ $Name = ("google.com", "henryrice.net")
 #$Server = ("8.8.8.8", "8.8.4.4", "9.9.9.9" , "208.67.222.222", "208.67.220.220", "4.2.2.1", "4.2.2.2", "199.85.126.10", "199.85.127.10", "8.26.56.26", "8.20.247.20", "84.200.69.80", "84.200.70.40")
 $Server = ("8.8.8.8", "8.8.4.4")
 
-foreach ($svr in $Server){
-    $SvrName = (Resolve-DnsName -Name $svr -Server $svr).NameHost
-    $SvrIP = (Resolve-DnsName -Name (Resolve-DnsName -Name $svr -Server $svr).NameHost -Server $svr).ipaddress
+function test {
+	foreach ($svr in $Server){
+	#    $SvrName = (Resolve-DnsName -Name $svr -Server $svr).NameHost
+	#    $SvrIP = (Resolve-DnsName -Name (Resolve-DnsName -Name $svr -Server $svr).NameHost -Server $svr).ipaddress
+		 $SvrName = (Resolve-DnsName -Name $svr -Server $svr).NameHost
+		 $SvrIP = (Resolve-DnsName -Name (Resolve-DnsName -Name $svr -Server $svr).NameHost -Server $svr).ipaddress
 
-    foreach ($nm in $Name){
-        $results = Resolve-DnsName -Name $nm -Server $Server
-        [PSCustomObject]@{
-            NameServerIP = $SvrIP
-            ResultsURI = $results.name
-            ResultsIP = $results.IPAddress
+		foreach ($nm in $Name){
+			$results = Resolve-DnsName -Name $nm -Server $Server
+			[PSCustomObject]@{
+				NameServerIP = $SvrIP
+				ResultsURI = $results.name
+				ResultsIP = $results.IPAddress
 
-        }
+			}
 
-    }
+		}
+	}
 }
+
+<#
+Output
+NameServerIP                    ResultsURI               ResultsIP
+------------                    ----------               ---------
+{2001:4860:4860::8888, 8.8.8.8} {google.com, google.com} {2607:f8b0:4004:806::200e, 172.217.9.206}
+{2001:4860:4860::8888, 8.8.8.8} henryrice.net            66.33.213.96
+{2001:4860:4860::8844, 8.8.4.4} {google.com, google.com} {2607:f8b0:4004:806::200e, 172.217.9.206}
+{2001:4860:4860::8844, 8.8.4.4} henryrice.net            66.33.213.96
+
+
+#>
 
 #Works
 $svr = "8.8.8.8"
