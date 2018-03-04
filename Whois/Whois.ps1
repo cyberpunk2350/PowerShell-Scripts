@@ -62,18 +62,18 @@
   Purpose/Change: Initial script development
   
 .EXAMPLE
-  WhoIs -Name Google.com -Server 8.8.8.8
+  Get-DNS -Name Google.com -Server 8.8.8.8
   Using both the Name and Server Parameters
 .EXAMPLE  
   WhoIs -Name Google.com
   Using Just the Name Parameter
 .EXAMPLE
-  WhoIs google.com
+  Get-DNS google.com
   Using Just the Name Parameter, however flag is not required to be included
 
 #> 
 
-Function WhoIs {
+Function Get-DNS {
     param (
         [parameter(mandatory=$true)]
         [Alias("CN","ComputerName","URL")]
@@ -93,6 +93,5 @@ Function WhoIs {
                 write-host "Exception Message: $($_.Exception.Message)" -ForegroundColor red
                 }
             }
-      #  Write-host " "
     }
 }
