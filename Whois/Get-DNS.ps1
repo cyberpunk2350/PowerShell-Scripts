@@ -95,6 +95,15 @@ Function Get-DNS {
     )
     
     foreach ($svr in $Server){
+		$resolvParams = @{
+			'Server' = $svr
+			'DnsOnly' = $true
+			'NoHostsFile' = $true
+			'ErrorAction' = 'Stop'
+			'ErrorVariable' = 'err'
+			'Name' = $Name
+		}
+	
         try { 
 			Write-output (Resolve-DnsName -Name $svr -Server $svr -ErrorAction Stop).namehost 
 		} catch { 
@@ -102,10 +111,10 @@ Function Get-DNS {
 		}
         foreach ($nm in $name){
             try { 
-                $results = Resolve-DnsName -Name $nm -Server $svr -ErrorAction Stop 
-                $results | Format-Table 
+                $results = Resolve-DnsName $resolvParams #-Name $nm -Server $svr -ErrorAction Stop 
+                #$results | Format-Table 
                 } catch {
-                write-output "Exception Message: $($_.Exception.Message)" 
+                write-output "Exception Message: $($err.Exception.Message)" 
                 }
             }
     }
