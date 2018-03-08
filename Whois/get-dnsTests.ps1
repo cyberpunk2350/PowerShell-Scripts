@@ -64,7 +64,7 @@ Function Get-DNStest {
 	$whois | Add-Member -MemberType NoteProperty -Name NameServerIP -Value "" #$svr 
     $whois | Add-Member -MemberType NoteProperty -Name ResolveName -Value "" #$results.name
     $whois | Add-Member -MemberType NoteProperty -Name ResolveIP -Value "" #$results.IPAddress
-    
+    $target = @('test')
     Write-Debug "Name Var: $Name"
     Write-Debug "Server Var: $Server"
     Write-Debug "whois Ver: $whois"
@@ -91,8 +91,7 @@ Function Get-DNStest {
 
         foreach ($nm in $name){
         Write-Verbose "Start of Name ForLoop"
-        Write-Debug "nm Value:"
-        Write-Debug $nm
+        Write-Debug "nm Value: $nm"
 		$resolvParams = @{
 			'Server' = $svr
 			'DnsOnly' = $true
@@ -123,10 +122,11 @@ Function Get-DNStest {
       
       # Write-host " "
       Write-Debug "Current state of whois var: $whois"
-      $whois
+      $target = $target + $whois 
+      Write-Debug "Target Var: $target"
       Write-Verbose "Server ForLoop: End"
     }
-    #Return $whois
     Write-Debug "Current state of whois var: $whois"
     Write-Verbose "Function: End"
+    Return $target
 }
