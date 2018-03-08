@@ -78,21 +78,20 @@ Function Get-DNS {
         [string[]]$Name,
         [parameter(mandatory=$false)]
         [string[]]$Server = @(
-			"8.8.8.8", 
-			"8.8.4.4", 
-			"9.9.9.9" , 
-			"208.67.222.222", 
-			"208.67.220.220", 
-			"4.2.2.1", 
-			"4.2.2.2", 
-			"199.85.126.10", 
-			"199.85.127.10", 
-			"8.26.56.26", 
-			"8.20.247.20", 
-			"84.200.69.80", 
-			"84.200.70.40"
+			"8.8.8.8", 			#Google
+			"8.8.4.4", 			#Google
+			"9.9.9.9" , 		#Quad9
+			"208.67.222.222", 	#OpenDNS
+			"208.67.220.220", 	#OpenDNS
+			"4.2.2.1", 			#Level3
+			"4.2.2.2", 			#Level3
+			"199.85.126.10", 	#Symantec
+			"199.85.127.10", 	#Symantec
+			"8.26.56.26", 		#DNSbyComodo.com
+			"8.20.247.20", 		#DNSbyComodo.com
+			"84.200.69.80", 	#ihgip.net
+			"84.200.70.40"		#ihgip.net
 		)
-##			      Google,	 Google,    Quad9,	OpenDNS,	  OpenDNS,	    Level3,    Level3,	  Symantec,	   Symantec,	    DNSbyComodo.com,		 ihgip.net
     )
     
     foreach ($svr in $Server){
