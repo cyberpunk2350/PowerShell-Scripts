@@ -1,42 +1,23 @@
-
 <#PSScriptInfo
-
 .VERSION 1.0
-
 .GUID 6e2d5345-7f63-4df7-b0e5-0253c62b0c86
-
 .AUTHOR Henry Rice
-
 .COMPANYNAME 
-
 .COPYRIGHT 
-
 .TAGS 
-
 .LICENSEURI 
-
 .PROJECTURI 
-
 .ICONURI 
-
 .EXTERNALMODULEDEPENDENCIES 
-
 .REQUIREDSCRIPTS 
-
 .EXTERNALSCRIPTDEPENDENCIES 
-
 .RELEASENOTES
-
-
 .PRIVATEDATA 
-
 #>
 
 <# 
-
 .DESCRIPTION 
   Quick Hack to compare two files SHA256 hash values.  Returns True if they match and False if they don't 
-
 #> 
 
 Function Test-Hash {
@@ -62,8 +43,6 @@ Function Test-Hash {
 	.EXAMPLE
 	  Test-Hash .\TestFile1.txt .\TestFile2.txt
 	  True
-	 
-	 
 	#>
     [CmdletBinding()]
 	param (
