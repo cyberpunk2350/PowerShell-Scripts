@@ -78,6 +78,8 @@ Function Get-DNS {
         [string[]]$Name,
         [parameter(mandatory=$false)]
         [string[]]$Server = @(
+			"1.1.1.1",			#CloudFlair
+			"1.0.0.1",			#CloudFlair
 			"8.8.8.8", 			#Google
 			"8.8.4.4", 			#Google
 			"9.9.9.9" , 		#Quad9
@@ -85,6 +87,10 @@ Function Get-DNS {
 			"208.67.220.220", 	#OpenDNS
 			"4.2.2.1", 			#Level3
 			"4.2.2.2", 			#Level3
+			"4.2.2.3", 			#Level3
+			"4.2.2.4", 			#Level3
+			"4.2.2.5", 			#Level3
+			"4.2.2.6", 			#Level3
 			"199.85.126.10", 	#Symantec
 			"199.85.127.10", 	#Symantec
 			"8.26.56.26", 		#DNSbyComodo.com
