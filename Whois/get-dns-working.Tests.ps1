@@ -6,43 +6,75 @@ Function Get-DNS-test {
         [Alias("cn","ComputerName","URL")]
         [string[]]$Name,
         [parameter(mandatory=$false)]
-        [string[]]$Server = @(
-			"1.1.1.1",			#CloudFlair
-			"1.0.0.1",			#CloudFlair
-			"8.8.8.8", 			#Google
-			"8.8.4.4", 			#Google
-			"9.9.9.9" #, 		#Quad9
-			<#"208.67.222.222", 	#OpenDNS
-			"208.67.220.220", 	#OpenDNS
-			"4.2.2.1", 			#Level3
-			"4.2.2.2", 			#Level3
-			"4.2.2.3", 			#Level3
-			"4.2.2.4", 			#Level3
-			"4.2.2.5", 			#Level3
-			"4.2.2.6", 			#Level3
-			"199.85.126.10", 	#Symantec
-			"199.85.127.10", 	#Symantec
-			"8.26.56.26", 		#DNSbyComodo.com
-			"8.20.247.20", 		#DNSbyComodo.com
-			"84.200.69.80", 	#ihgip.net
-			"84.200.70.40"		#ihgip.net#>
-        ),
+        [string[]]$Server,
 		[Parameter()]
-        [string]$ErrorLogFilePath = ".\errors.txt"
+        [switch] $CloudFlair=$false,
+		[Parameter()]
+        [switch] $Google=$false,
+		[Parameter()]
+        [switch] $Quad9=$false,
+		[Parameter()]
+        [switch] $OpenDNS=$false,
+		[Parameter()]
+        [switch] $Level3=$false,
+		[Parameter()]
+        [switch] $Symantec=$false,
+		[Parameter()]
+        [switch] $Comodo=$false,
+		[Parameter()]
+        [switch] $ihgip=$false,
+		[Parameter()]
+        [switch] $AllSvrs=$false
 	)
 #endregion
 
+#region Server Flags
+            Write-Debug "Check Flags"
+        if ($Server -ne ""){$Servers = $Server}
+        if ($CloudFlair){$Servers = $Servers + @("1.1.1.1","1.0.0.1") }
+        if ($Google){$Servers = $Servers + @("8.8.8.8", "8.8.4.4")}
+        if ($Quad9){$Servers = $Servers + @("9.9.9.9")}
+        if ($OpenDNS){$Servers = $Servers + @("208.67.222.222","208.67.220.220")}
+        if ($Level3){$Servers = $Servers + @("4.2.2.1","4.2.2.2","4.2.2.3","4.2.2.4","4.2.2.5","4.2.2.6")}
+        if ($Symantec){$Servers = $Servers + @("199.85.126.10","199.85.127.10")}
+        if ($Comodo){$Servers = $Servers + @("8.26.56.26","8.20.247.20")}
+        if ($ihgip){$Servers = $Servers + @("84.200.69.80","84.200.70.40")}
+        if ($AllSvrs){
+                Remove-Variable Servers
+                $Servers = $Server + @( "1.1.1.1",			#CloudFlair
+			                            "1.0.0.1",			#CloudFlair
+			                            "8.8.8.8", 			#Google
+			                            "8.8.4.4", 			#Google
+			                            "9.9.9.9", 		    #Quad9
+			                            "208.67.222.222", 	#OpenDNS
+			                            "208.67.220.220", 	#OpenDNS
+			                            "4.2.2.1", 			#Level3
+			                            "4.2.2.2", 			#Level3
+			                            "4.2.2.3", 			#Level3
+			                            "4.2.2.4", 			#Level3
+			                            "4.2.2.5", 			#Level3
+			                            "4.2.2.6", 			#Level3
+			                            "199.85.126.10", 	#Symantec
+			                            "199.85.127.10", 	#Symantec
+			                            "8.26.56.26", 		#DNSbyComodo.com
+			                            "8.20.247.20", 		#DNSbyComodo.com
+			                            "84.200.69.80", 	#ihgip.net
+			                            "84.200.70.40"		#ihgip.net 
+                                        )
+        }
+           
+        if($Servers -eq $null){
+            Write-Debug "`$Servers is blank"
+            Write-Error "At least DNS Server Must be Identified"
+           Break
+
+        }
+#endregion    
 
     foreach ($nm in $name){  Write-Debug "top of Name Loop"
-        foreach ($svr in $Server){ Write-Debug "Top of Server Loop"
+        foreach ($svr in $Servers){ Write-Debug "Top of Server Loop"
 
-#            BEGIN {
-#                Write-Debug "Begin Top"
-#                Write-Debug "Begin Bottom"
-#            }
 #region Main Code
-#            PROCESS {
-#                Write-Debug "PROCESS Top"
 
                 try{
                         Write-Debug "Try Top"
@@ -104,14 +136,8 @@ Function Get-DNS-test {
     
                         Write-Debug "finally Bottom"                
                 }
-
-#                Write-Debug "PROCESS Bottom"
-#            }
 #endregion
-#            END {
-#                Write-Debug "END Top"
-#                Write-Debug "END Bottom"                
-#            }  
+
             Write-Debug "Bottom of Server loop"
         } Write-Debug "End of Server loop"    
         Write-Debug "Bottom of Name loop"
