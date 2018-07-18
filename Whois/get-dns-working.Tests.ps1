@@ -29,7 +29,7 @@ Function Get-DNS-test {
 #endregion
 
 #region Server Flags
-            Write-Debug "Check Flags"
+            Write-Debug "Check Default Server Flags"
         if ($Server -ne ""){$Servers = $Server}
         if ($CloudFlair){$Servers = $Servers + @("1.1.1.1","1.0.0.1") }
         if ($Google){$Servers = $Servers + @("8.8.8.8", "8.8.4.4")}
@@ -71,13 +71,13 @@ Function Get-DNS-test {
         }
 #endregion    
 
-    foreach ($nm in $name){  Write-Debug "top of Name Loop"
-        foreach ($svr in $Servers){ Write-Debug "Top of Server Loop"
+    foreach ($nm in $name){
+        foreach ($svr in $Servers){
 
 #region Main Code
 
                 try{
-                        Write-Debug "Try Top"
+                        
                     
                         Write-Debug "Resolve Server Hostname: $svr"
                     $DNS_Svr_Hostname = (Resolve-DnsName -Name $svr -Server $svr -ErrorAction SilentlyContinue -ErrorVariable Svr_err).NameHost
@@ -87,16 +87,13 @@ Function Get-DNS-test {
                         Write-Debug "Resolveing $nm"
                     $results = Resolve-DnsName -Server $Server -DnsOnly -NoHostsFile -ErrorAction stop -ErrorVariable err -Name $nm   #$resolvParams
                    
-                        Write-Debug "results = $results"
+                        Write-Debug "Everything that is going in the item properties:
+                                     ServerName: $DNS_Svr_Hostname
+                                     ServerIP: $svr
+                                     Query: $nm
+                                     ResolveHostName: $results.NameHost
+                                     ResolveIPAddress: $results.IPAddress"
 
-                        Write-Debug "Everything that is going in the item properties:"
-                        Write-Debug "ServerName: $DNS_Svr_Hostname"
-                        Write-Debug "ServerIP: $svr"
-                        Write-Debug "Query: $nm"
-                        Write-Debug "ResolveHostName: $results.NameHost"
-                        Write-Debug "ResolveIPAddress: $results.IPAddress"
-
-    
                     $properties = @{
                         DNSServerHostName =  $DNS_Svr_Hostname
                         DNSServerIPAddress = $svr
@@ -105,10 +102,8 @@ Function Get-DNS-test {
                         ResolveIPAddress = $results.IPAddress
                     }
 
-                        Write-Debug "Try Bottom"
                 }
                 catch{
-                        Write-Debug "catch Top"
 
                     $properties = @{
                         DNSServerHostName = $DNS_Svr_Hostname
@@ -117,31 +112,27 @@ Function Get-DNS-test {
                         ResolveHostName = "Error"
                         ResolveIPAddress = "Error"
                     }
-                        Write-Debug $properties.DNSServerHostName
-                        Write-Debug $properties.DNSServerIPAddress
-                        Write-Debug $properties.Query
-                        Write-Debug $properties.ResolveHostName
-                        Write-Debug $properties.ResolveIPAddress
+                        Write-Debug "$properties.DNSServerHostName
+                                    $properties.DNSServerIPAddress
+                                    $properties.Query
+                                    $properties.ResolveHostName
+                                    $properties.ResolveIPAddress"
 
-                        Write-Debug "catch Bottom"
                 }
                 finally {
-                        Write-Debug "finally Top"
 
                         Write-Debug "Buiding the new PSPbject"               
                     $obj = New-Object -TypeName PSObject -Property $properties
 
                         Write-Debug "The Results of the new object"
                     Write-Output $obj 
-    
-                        Write-Debug "finally Bottom"                
+   
                 }
 #endregion
 
-            Write-Debug "Bottom of Server loop"
-        } Write-Debug "End of Server loop"    
-        Write-Debug "Bottom of Name loop"
-    } Write-Debug "End of Name loop"
+        } 
+        
+    } 
  Write-Debug "End of Tool"
 }
 
