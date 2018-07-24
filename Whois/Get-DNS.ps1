@@ -215,7 +215,7 @@ Function Get-DNS {
                     ResolveHostName: $results.NameHost
                     ResolveIPAddress: $results.IPAddress"
 
-                $properties = @{
+                $properties = [ordered]@{
                     DNSServerHostName =  $DNS_Svr_Hostname
                     DNSServerIPAddress = $svr
                     Query = $nm
@@ -224,18 +224,18 @@ Function Get-DNS {
                 }
             }
             catch{
-                                        $properties = @{
+				$properties = [ordered]@{
                         DNSServerHostName = $DNS_Svr_Hostname
                         DNSServerIPAddress = $svr
                         Query = $nm
                         ResolveHostName = "Error"
                         ResolveIPAddress = "Error"
                     }
-                    Write-Debug "$properties.DNSServerHostName
-                    $properties.DNSServerIPAddress
-                    $properties.Query
-                    $properties.ResolveHostName
-                    $properties.ResolveIPAddress"
+					Write-Debug "$properties.DNSServerHostName
+                $properties.DNSServerIPAddress
+                $properties.Query
+                $properties.ResolveHostName
+                $properties.ResolveIPAddress"
             }
             finally {
 
