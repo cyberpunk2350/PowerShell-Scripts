@@ -50,6 +50,4 @@ Function Set-ADProfilePic {
     {
     Write-Output $struser " Does not exist"
     }
-
-    # This is the function to open the file select dialog box
 }
