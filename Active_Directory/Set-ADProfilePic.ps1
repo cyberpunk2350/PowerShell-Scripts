@@ -1,3 +1,16 @@
+
+Function Get-OpenFile($initialDirectory) {
+    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") |
+    Out-Null
+
+    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+    $OpenFileDialog.initialDirectory = $initialDirectory
+    $OpenFileDialog.filter = "JPEG files (*.jpg)|*.jpg"
+    $OpenFileDialog.ShowDialog() | Out-Null
+    $OpenFileDialog.filename
+    $OpenFileDialog.ShowHelp = $true
+}
+
 Function Set-ADProfilePic {
 
 	[CmdletBinding()]
@@ -39,16 +52,4 @@ Function Set-ADProfilePic {
     }
 
     # This is the function to open the file select dialog box
-}
-
-Function Get-OpenFile($initialDirectory) {
-    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") |
-    Out-Null
-
-    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
-    $OpenFileDialog.initialDirectory = $initialDirectory
-    $OpenFileDialog.filter = "JPEG files (*.jpg)|*.jpg"
-    $OpenFileDialog.ShowDialog() | Out-Null
-    $OpenFileDialog.filename
-    $OpenFileDialog.ShowHelp = $true
 }
