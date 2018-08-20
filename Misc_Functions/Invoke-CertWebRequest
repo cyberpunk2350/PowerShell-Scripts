@@ -26,4 +26,5 @@ Function Invoke-CertWebRequest {
 	}
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 	$Export = Invoke-WebRequest @IwrParams
+	$Export
 }
