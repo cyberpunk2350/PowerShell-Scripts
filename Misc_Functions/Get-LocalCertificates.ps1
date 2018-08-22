@@ -7,7 +7,7 @@ Function Get-Certificates {
 	# You can do more filtering here if there are other cert requirements...
 
 	#$ValidCerts = [System.Security.Cryptography.X509Certificates.X509Certificate2[]](dir Cert:\CurrentUser\My | where { ($_.NotAfter -gt (Get-Date)) })
-	$ValidCerts = [System.Security.Cryptography.X509Certificates.X509Certificate2[]](dir Cert:\CurrentUser\My | where { $_.FriendlyName -like "Signature*" })
+	$ValidCerts = [System.Security.Cryptography.X509Certificates.X509Certificate2[]](dir Cert:\CurrentUser\My | where { $_.FriendlyName -like "Authentication*" })
 
 
 	# You could check $ValidCerts, and not do this prompt if it only contains 1...
