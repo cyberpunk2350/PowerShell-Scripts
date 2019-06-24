@@ -1,7 +1,8 @@
 Function PingTee {
 	Param(
 		[Parameter(mandatory=$true)]
-		[String] $ComputerName
+		[String] $ComputerName,
+        [Float] $Delay = 1
 		)
 	while ($true) { 
 		try {
@@ -10,9 +11,6 @@ Function PingTee {
 		catch { 
 			$thing =  Write-Output 'No Response' } 
 		$thing | ForEach {'{0} - {1}' -f (Get-Date),$_}
-		$x=0
-		while($x -le 500000){
-			$x++
-		} 
+        Start-Sleep -Seconds $Delay
 	}
 }
